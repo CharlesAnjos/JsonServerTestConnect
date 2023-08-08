@@ -17,14 +17,19 @@ import java.util.List;
 
 import auxiliadores.Auxiliador;
 import auxiliadores.Conexao;
-import entidades.Post;
+import entidades.Agenda;
+import entidades.AgendaDados;
+import entidades.DadosAdicionais;
 
 public class MainActivity extends AppCompatActivity {
 
   private TextView textViewID;
-  private final String URL = "https://jsonplaceholder.typicode.com/posts";
+  private final String URL = "https://my-json-server.typicode.com/CharlesAnjos/JsonServerTest/agenda";
   private StringBuilder builder = null;
-  private List<Post> posts = null;
+  private List<Agenda> agenda = null;
+  private List<DadosAdicionais> dadosAdicionais = null;
+  private List<AgendaDados> agendaDados = null;
+
 
 
 
@@ -58,10 +63,12 @@ public class MainActivity extends AppCompatActivity {
       builder = new StringBuilder();
 
       if(textoJSON != null){
-        Type type = new TypeToken<List<Post>>(){}.getType();
-        posts = gson.fromJson(textoJSON,type);
-        for(int i=0;i<posts.size();i++){
-          builder.append(posts.get(i).getId()).append("\n\n");
+        Type type = new TypeToken<List<Agenda>>(){}.getType();
+        agenda = gson.fromJson(textoJSON,type);
+        for(int i = 0; i< agenda.size(); i++){
+          builder.append(agenda.get(i).getNome()).append("\n\n")
+          .append(agenda.get(i).getTelefone()).append("\n\n")
+          .append("-------------------------").append("\n\n");
         } //for
       } //if
       else {
